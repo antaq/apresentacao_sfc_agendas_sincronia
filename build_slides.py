@@ -1713,7 +1713,7 @@ novo(
     "Propostas de melhoria · para discussão",
     "O que podemos encaminhar juntos",
     f"""
-  <div class="flex-1 px-16 pb-2 grid grid-cols-3 gap-5">
+  <div class="flex-1 px-16 pb-5 grid grid-cols-3 gap-5">
     {_melh("1", "Um calendário só para ouvir o setor",
            "Consulta externa do PAF aberta no 1º semestre, dentro do ciclo de participação social da Agenda Regulatória, sem consultar duas vezes os mesmos respondentes.",
            "SRG", "NT 27/2026, item 8.2, I")}
@@ -1732,13 +1732,6 @@ novo(
     {_melh("6", "Planejamento que conversa com pessoas",
            "A capacidade do PAF vem do PGD: lotação no Norte e capacitação no PGA, e o EPAF no acompanhamento do desempenho institucional.",
            "SGE", "minuta da NT de Metodologia, itens 6 a 8")}
-  </div>
-  <div class="px-16 pb-2">
-    <div class="destaque flex items-center gap-6">
-      <i class="fas fa-handshake text-3xl" style="color:#FFD700;"></i>
-      <p class="text-lg" style="margin:0;"><strong>Para começar:</strong> um ponto focal por agenda e um marco comum no calendário, para que a revisão
-      de cada agenda considere <strong style="color:#FFD700;">o que as outras aprenderam no ciclo</strong>.</p>
-    </div>
   </div>
 """,
     extra_css="""
