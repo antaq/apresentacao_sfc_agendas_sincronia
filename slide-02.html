@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roteiro — Agendas em Sincronia</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>:root { --tz-base: 1.629; }
+
+body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif; }
+.slide { width:100vw; height:100vh; position:relative; display:flex; flex-direction:column; overflow:hidden; background:#ffffff; }
+.font-montserrat { font-family:'Montserrat',sans-serif; }
+.text-brand { color:#003366; }
+.bg-brand { background-color:#003366; }
+.text-accent { color:#0066CC; }
+.bg-accent { background-color:#0066CC; }
+.header-bar { height:10px; background:#003366; width:100%; }
+.secondary-bar { height:4px; background:#0066CC; width:100%; }
+
+.stat-card {
+  background: linear-gradient(135deg, #003366, #004d99);
+  border-radius: 16px;
+  padding: 20px 18px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: '';
+  position: absolute; top: -30px; right: -30px;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: calc(48px * var(--tz));
+  line-height: 1;
+}
+.card {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 14px 20px;
+  background: #F8FAFC;
+  border-radius: 14px;
+  border-left: 5px solid #0066CC;
+}
+.card-green  { background: linear-gradient(135deg,#F0FDF4,#DCFCE7); border-left-color:#22C55E; }
+.card-amber  { background: linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#F59E0B; }
+.card-red    { background: linear-gradient(135deg,#FEF2F2,#FEE2E2); border-left-color:#EF4444; }
+.ico {
+  width:50px; height:50px; border-radius:12px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+}
+/* As colunas dos slides de duas metades centram o proprio conteudo: a folga
+   vertical fica dividida em cima e embaixo, em vez de sobrar toda no rodape.
+   O contêiner de conteudo quase sempre E o proprio grid (`class="flex-1 ...
+   grid"`), e nao um grid dentro dele — por isso os dois seletores. */
+.slide > .flex-1 > .flex.flex-col,
+.slide > .flex-1 > .grid > .flex.flex-col { justify-content:center; }
+
+table.tbl { width:100%; border-collapse:collapse; }
+table.tbl th {
+  background:#F1F5F9; color:#475569; text-align:left;
+  font-family:'Montserrat',sans-serif; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.06em;
+  padding:10px 14px; font-size:calc(15px * var(--tz));
+}
+table.tbl td { padding:11px 14px; border-top:1px solid #E2E8F0; color:#334155; font-size:calc(18px * var(--tz)); }
+table.tbl tr:nth-child(even) td { background:#FAFBFC; }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+table.tbl th.num { text-align:right; }
+.pill {
+  display:inline-block; padding:3px 12px; border-radius:999px;
+  font-family:'Montserrat',sans-serif; font-weight:700;
+  font-size:calc(14px * var(--tz)); letter-spacing:0.04em;
+}
+.pill-a { background:#DCFCE7; color:#166534; }
+.pill-b { background:#DBEAFE; color:#1E40AF; }
+.pill-c { background:#FEE2E2; color:#991B1B; }
+.pill-gold { background:#FEF3C7; color:#92400E; }
+.formula {
+  background:#0F172A; color:#E2E8F0; border-radius:14px;
+  padding:18px 24px; font-family:'Courier New',monospace;
+  font-size:calc(20px * var(--tz)); letter-spacing:0.02em;
+}
+.destaque {
+  background: linear-gradient(135deg,#003366,#0066CC);
+  color:#fff; border-radius:16px; padding:16px 24px;
+}
+.legenda { color:#64748B; font-size:calc(15px * var(--tz)); line-height:1.5; }
+.novo-tag {
+  display:inline-flex; align-items:center; gap:7px;
+  background:#FFD700; color:#003366; border-radius:999px;
+  padding:3px 14px; font-family:'Montserrat',sans-serif;
+  font-weight:900; font-size:calc(13px * var(--tz));
+  letter-spacing:0.1em; text-transform:uppercase;
+}
+
+/* Respiro vertical entre os cards.
+   Os utilitarios gap-* do Tailwind valem para as duas direcoes, e mexer no
+   `gap` cheio estreitaria as colunas dos grids de duas metades. Por isso aqui
+   so o `row-gap` e reescrito: um card fica mais longe do card de baixo, e a
+   largura das colunas continua exatamente a mesma. Esta folha vem depois do
+   CDN no <head>, entao vence no desempate por ordem. */
+.gap-2 { row-gap:18px; }
+.gap-3 { row-gap:30px; }
+.gap-4 { row-gap:32px; }
+.gap-5 { row-gap:34px; }
+.gap-6 { row-gap:34px; }
+.gap-8 { row-gap:38px; }
+
+.bloco-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  border-radius:999px; padding:4px 16px; font-family:'Montserrat',sans-serif; white-space:nowrap;
+  font-weight:900; font-size:calc(13px * var(--tz)); letter-spacing:0.08em; text-transform:uppercase;
+}
+.bt-risco { background:#FEE2E2; color:#991B1B; }
+.bt-tema  { background:#DBEAFE; color:#1E3A8A; }
+.bt-geral { background:#FEF3C7; color:#92400E; }
+.bt-oper  { background:#DCFCE7; color:#166534; }
+.fonte { color:#94A3B8; font-size:calc(13px * var(--tz)); line-height:1.4; }
+.titulo-sec { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(21px * var(--tz)); }
+.sub-sec { color:#64748B; font-size:calc(15px * var(--tz)); }
+.num-badge {
+  width:38px; height:38px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:#003366; color:#fff; font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size:calc(17px * var(--tz));
+}
+.card p { margin:0; }
+.card-t { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(19px * var(--tz)); }
+.card-d { color:#475569; font-size:calc(16px * var(--tz)); line-height:1.45; margin-top:3px !important; }
+
+/* Barras: trilho cinza, segmentos com 2px de folga entre si e rótulo direto. */
+.bar-row { display:grid; grid-template-columns: var(--rot, 300px) 1fr; align-items:center; gap:14px; }
+.bar-rot { color:#334155; font-size:calc(17px * var(--tz)); line-height:1.25; text-align:right; }
+.bar-rot strong { color:#003366; }
+.bar-trk { display:flex; gap:2px; height:42px; }
+.seg {
+  height:100%; display:flex; align-items:center; justify-content:center;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(17px * var(--tz));
+  color:#fff; min-width:0; overflow:hidden; white-space:nowrap;
+}
+.seg:first-child { border-radius:4px 0 0 4px; }
+.seg:last-child  { border-radius:0 4px 4px 0; }
+.seg:only-child  { border-radius:4px; }
+.leg-row { display:flex; flex-wrap:wrap; gap:22px; color:#475569; font-size:calc(16px * var(--tz)); }
+.leg-row span { display:inline-flex; align-items:center; gap:7px; }
+.leg-row i.sw { width:18px; height:18px; border-radius:3px; display:inline-block; }
+/* Título com tamanho fixo em todos os slides: não acompanha o fator de texto,
+   para que títulos longos não quebrem linha quando o corpo cresce. */
+.slide p.text-5xl { font-size:54px !important; line-height:1.1 !important; }
+
+.bt-b1 { background:#DBEAFE; color:#1E3A8A; }
+.bt-b2 { background:#FEE2E2; color:#991B1B; }
+.bt-b3 { background:#EDE9FE; color:#5B21B6; }
+.bt-b4 { background:#DCFCE7; color:#166534; }
+.quem {
+  display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:2px 11px;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(12.5px * var(--tz));
+  letter-spacing:0.04em; background:#EDE9FE; color:#5B21B6; white-space:nowrap;
+}
+
+.rt-lead { margin:0; color:#475569; font-size:calc(19px * var(--tz)); line-height:1.45; }
+.rt-lead strong { color:#003366; }
+.rt { border:1px solid #E2E8F0; border-top:8px solid var(--c); border-radius:16px; padding:18px 22px;
+      display:flex; flex-direction:column; gap:10px; background:#fff; }
+.rt p { margin:0; }
+.rt-top { display:flex; justify-content:space-between; align-items:center; }
+.rt-n { font-family:'Montserrat',sans-serif; font-weight:900; color:var(--c); font-size:calc(46px * var(--tz)); line-height:1; }
+.rt-min { font-family:'Montserrat',sans-serif; font-weight:700; color:#64748B; font-size:calc(15px * var(--tz));
+          background:#F1F5F9; border-radius:999px; padding:3px 12px; }
+.rt-t { font-family:'Montserrat',sans-serif; font-weight:900; color:#003366; font-size:calc(23px * var(--tz)); line-height:1.2; }
+.rt-q { color:#64748B; font-style:italic; font-size:calc(16px * var(--tz)); line-height:1.4; }
+.rt-l { margin:4px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+.rt-l li { position:relative; padding-left:22px; color:#334155; font-size:calc(17px * var(--tz)); line-height:1.35; }
+.rt-l li::before { content:''; position:absolute; left:2px; top:calc(8px * var(--tz)); width:10px; height:10px; border-radius:2px; background:var(--c); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header-bar"></div>
+  <div class="secondary-bar"></div>
+
+  <div class="px-16 pt-6 pb-2">
+    <div class="flex items-center gap-3">
+      <div style="width:5px;height:44px;" class="bg-accent"></div>
+      <div>
+        <p class="font-montserrat font-bold text-gray-400 text-lg uppercase tracking-widest">Agendas em Sincronia · 13 de outubro de 2026</p>
+        <p class="text-5xl font-montserrat font-bold text-brand uppercase tracking-tight">O que vamos conversar</p>
+      </div>
+      <div class="ml-auto flex items-center gap-3">
+        <span class="bloco-tag bt-geral"><i class="fas fa-compass"></i> Contexto</span>
+        <img src="assets/logo-antaq-azul.png" alt="ANTAQ" style="height:32px;">
+        <p class="font-montserrat font-bold text-gray-400 tracking-wider" style="font-size:12px; line-height:1.35; white-space:nowrap;">SFC<br/>GRAT · GPF · GCOR</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex-1 px-16 pb-2 flex flex-col gap-4">
+    <p class="rt-lead">A organização pediu quatro coisas: <strong>o rito do PAF</strong>, <strong>a conexão com as outras agendas</strong>,
+    <strong>os projetos em andamento</strong> e <strong>as melhorias que podemos encaminhar juntos</strong>. O roteiro segue essa ordem.</p>
+    <div class="flex-1 grid grid-cols-4 gap-5">
+      
+      <div class="rt" style="--c:#1E3A8A;">
+        <div class="rt-top"><span class="rt-n">01</span><span class="rt-min"><i class="far fa-clock"></i> 10 min</span></div>
+        <p class="rt-t">A agenda da fiscalização</p>
+        <p class="rt-q">Como a SFC decide o que fiscalizar?</p>
+        <ul class="rt-l"><li>Premissas do PPF 2025-2028</li><li>Fiscalização Responsiva</li><li>Fiscalização em 3 Níveis</li><li>Grupos Especializados (GEF)</li></ul>
+      </div>
+      
+      <div class="rt" style="--c:#991B1B;">
+        <div class="rt-top"><span class="rt-n">02</span><span class="rt-min"><i class="far fa-clock"></i> 12 min</span></div>
+        <p class="rt-t">O rito do PAF</p>
+        <p class="rt-q">Quem faz o quê, e como o plano anual é montado?</p>
+        <ul class="rt-l"><li>Do Regimento à Diretoria Colegiada</li><li>PAF 2027 em duas frentes</li><li>O que entra no plano</li><li>O plano cabe na equipe?</li></ul>
+      </div>
+      
+      <div class="rt" style="--c:#5B21B6;">
+        <div class="rt-top"><span class="rt-n">03</span><span class="rt-min"><i class="far fa-clock"></i> 15 min</span></div>
+        <p class="rt-t">Conexão com as outras agendas</p>
+        <p class="rt-q">O que a fiscalização recebe das agendas, e o que devolve?</p>
+        <ul class="rt-l"><li>99 contribuições da Agenda Regulatória</li><li>Confronto com a Agenda de Estudos</li><li>Temáticas de 2027</li><li>Mapa de conexões</li></ul>
+      </div>
+      
+      <div class="rt" style="--c:#166534;">
+        <div class="rt-top"><span class="rt-n">04</span><span class="rt-min"><i class="far fa-clock"></i> 13 min</span></div>
+        <p class="rt-t">Projetos e melhorias</p>
+        <p class="rt-q">O que está em curso, e o que dá para fazer junto?</p>
+        <ul class="rt-l"><li>Normas, sistemas e capacitação</li><li>SisPAT e SAI</li><li>Seis propostas de melhoria</li></ul>
+      </div>
+    </div>
+    <div class="destaque flex items-center gap-6">
+      <i class="fas fa-comments text-3xl" style="color:#FFD700;"></i>
+      <p class="text-lg" style="margin:0;">Cerca de <strong>50 minutos de exposição</strong> e <strong style="color:#FFD700;">10 minutos de conversa</strong>
+      no fim, sobre as propostas do Bloco 4.</p>
+    </div>
+  </div>
+
+
+  <div class="px-16 pb-4 flex justify-between items-center border-t border-gray-100 pt-3 mx-8">
+    <p class="text-gray-400 text-sm">Agendas em Sincronia · O Plano de Fiscalização e as Agendas da ANTAQ · SFC · 13/10/2026</p>
+    <p class="text-gray-300 text-sm font-mono">2 / 25</p>
+  </div>
+</div>
+<script src="zoom.js"></script>
+<script>document.addEventListener("keydown",function(e){if(["ArrowRight","ArrowLeft","PageDown","PageUp","Home","End"," ","f","F"].indexOf(e.key)!==-1){e.preventDefault();window.parent.postMessage({type:"slide-nav",key:e.key},"*");}});</script>
+</body>
+</html>

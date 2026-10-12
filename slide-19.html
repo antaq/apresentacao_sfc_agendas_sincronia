@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mapa de conexões com as agendas</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>:root { --tz-base: 1.539; }
+
+body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif; }
+.slide { width:100vw; height:100vh; position:relative; display:flex; flex-direction:column; overflow:hidden; background:#ffffff; }
+.font-montserrat { font-family:'Montserrat',sans-serif; }
+.text-brand { color:#003366; }
+.bg-brand { background-color:#003366; }
+.text-accent { color:#0066CC; }
+.bg-accent { background-color:#0066CC; }
+.header-bar { height:10px; background:#003366; width:100%; }
+.secondary-bar { height:4px; background:#0066CC; width:100%; }
+
+.stat-card {
+  background: linear-gradient(135deg, #003366, #004d99);
+  border-radius: 16px;
+  padding: 20px 18px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: '';
+  position: absolute; top: -30px; right: -30px;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: calc(48px * var(--tz));
+  line-height: 1;
+}
+.card {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 14px 20px;
+  background: #F8FAFC;
+  border-radius: 14px;
+  border-left: 5px solid #0066CC;
+}
+.card-green  { background: linear-gradient(135deg,#F0FDF4,#DCFCE7); border-left-color:#22C55E; }
+.card-amber  { background: linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#F59E0B; }
+.card-red    { background: linear-gradient(135deg,#FEF2F2,#FEE2E2); border-left-color:#EF4444; }
+.ico {
+  width:50px; height:50px; border-radius:12px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+}
+/* As colunas dos slides de duas metades centram o proprio conteudo: a folga
+   vertical fica dividida em cima e embaixo, em vez de sobrar toda no rodape.
+   O contêiner de conteudo quase sempre E o proprio grid (`class="flex-1 ...
+   grid"`), e nao um grid dentro dele — por isso os dois seletores. */
+.slide > .flex-1 > .flex.flex-col,
+.slide > .flex-1 > .grid > .flex.flex-col { justify-content:center; }
+
+table.tbl { width:100%; border-collapse:collapse; }
+table.tbl th {
+  background:#F1F5F9; color:#475569; text-align:left;
+  font-family:'Montserrat',sans-serif; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.06em;
+  padding:10px 14px; font-size:calc(15px * var(--tz));
+}
+table.tbl td { padding:11px 14px; border-top:1px solid #E2E8F0; color:#334155; font-size:calc(18px * var(--tz)); }
+table.tbl tr:nth-child(even) td { background:#FAFBFC; }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+table.tbl th.num { text-align:right; }
+.pill {
+  display:inline-block; padding:3px 12px; border-radius:999px;
+  font-family:'Montserrat',sans-serif; font-weight:700;
+  font-size:calc(14px * var(--tz)); letter-spacing:0.04em;
+}
+.pill-a { background:#DCFCE7; color:#166534; }
+.pill-b { background:#DBEAFE; color:#1E40AF; }
+.pill-c { background:#FEE2E2; color:#991B1B; }
+.pill-gold { background:#FEF3C7; color:#92400E; }
+.formula {
+  background:#0F172A; color:#E2E8F0; border-radius:14px;
+  padding:18px 24px; font-family:'Courier New',monospace;
+  font-size:calc(20px * var(--tz)); letter-spacing:0.02em;
+}
+.destaque {
+  background: linear-gradient(135deg,#003366,#0066CC);
+  color:#fff; border-radius:16px; padding:16px 24px;
+}
+.legenda { color:#64748B; font-size:calc(15px * var(--tz)); line-height:1.5; }
+.novo-tag {
+  display:inline-flex; align-items:center; gap:7px;
+  background:#FFD700; color:#003366; border-radius:999px;
+  padding:3px 14px; font-family:'Montserrat',sans-serif;
+  font-weight:900; font-size:calc(13px * var(--tz));
+  letter-spacing:0.1em; text-transform:uppercase;
+}
+
+/* Respiro vertical entre os cards.
+   Os utilitarios gap-* do Tailwind valem para as duas direcoes, e mexer no
+   `gap` cheio estreitaria as colunas dos grids de duas metades. Por isso aqui
+   so o `row-gap` e reescrito: um card fica mais longe do card de baixo, e a
+   largura das colunas continua exatamente a mesma. Esta folha vem depois do
+   CDN no <head>, entao vence no desempate por ordem. */
+.gap-2 { row-gap:18px; }
+.gap-3 { row-gap:30px; }
+.gap-4 { row-gap:32px; }
+.gap-5 { row-gap:34px; }
+.gap-6 { row-gap:34px; }
+.gap-8 { row-gap:38px; }
+
+.bloco-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  border-radius:999px; padding:4px 16px; font-family:'Montserrat',sans-serif; white-space:nowrap;
+  font-weight:900; font-size:calc(13px * var(--tz)); letter-spacing:0.08em; text-transform:uppercase;
+}
+.bt-risco { background:#FEE2E2; color:#991B1B; }
+.bt-tema  { background:#DBEAFE; color:#1E3A8A; }
+.bt-geral { background:#FEF3C7; color:#92400E; }
+.bt-oper  { background:#DCFCE7; color:#166534; }
+.fonte { color:#94A3B8; font-size:calc(13px * var(--tz)); line-height:1.4; }
+.titulo-sec { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(21px * var(--tz)); }
+.sub-sec { color:#64748B; font-size:calc(15px * var(--tz)); }
+.num-badge {
+  width:38px; height:38px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:#003366; color:#fff; font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size:calc(17px * var(--tz));
+}
+.card p { margin:0; }
+.card-t { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(19px * var(--tz)); }
+.card-d { color:#475569; font-size:calc(16px * var(--tz)); line-height:1.45; margin-top:3px !important; }
+
+/* Barras: trilho cinza, segmentos com 2px de folga entre si e rótulo direto. */
+.bar-row { display:grid; grid-template-columns: var(--rot, 300px) 1fr; align-items:center; gap:14px; }
+.bar-rot { color:#334155; font-size:calc(17px * var(--tz)); line-height:1.25; text-align:right; }
+.bar-rot strong { color:#003366; }
+.bar-trk { display:flex; gap:2px; height:42px; }
+.seg {
+  height:100%; display:flex; align-items:center; justify-content:center;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(17px * var(--tz));
+  color:#fff; min-width:0; overflow:hidden; white-space:nowrap;
+}
+.seg:first-child { border-radius:4px 0 0 4px; }
+.seg:last-child  { border-radius:0 4px 4px 0; }
+.seg:only-child  { border-radius:4px; }
+.leg-row { display:flex; flex-wrap:wrap; gap:22px; color:#475569; font-size:calc(16px * var(--tz)); }
+.leg-row span { display:inline-flex; align-items:center; gap:7px; }
+.leg-row i.sw { width:18px; height:18px; border-radius:3px; display:inline-block; }
+/* Título com tamanho fixo em todos os slides: não acompanha o fator de texto,
+   para que títulos longos não quebrem linha quando o corpo cresce. */
+.slide p.text-5xl { font-size:54px !important; line-height:1.1 !important; }
+
+.bt-b1 { background:#DBEAFE; color:#1E3A8A; }
+.bt-b2 { background:#FEE2E2; color:#991B1B; }
+.bt-b3 { background:#EDE9FE; color:#5B21B6; }
+.bt-b4 { background:#DCFCE7; color:#166534; }
+.quem {
+  display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:2px 11px;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(12.5px * var(--tz));
+  letter-spacing:0.04em; background:#EDE9FE; color:#5B21B6; white-space:nowrap;
+}
+
+table.cx td { vertical-align:middle; font-size:calc(16.5px * var(--tz)); line-height:1.4; padding:12px 14px; }
+table.cx td strong { color:#003366; }
+table.cx th { font-size:calc(14px * var(--tz)); }
+.cx-a { display:flex; gap:14px; align-items:center; }
+.cx-a i { color:#5B21B6; font-size:calc(24px * var(--tz)); width:32px; text-align:center; flex-shrink:0; }
+.cx-a > div { display:flex; flex-direction:column; align-items:flex-start; gap:4px; }
+.cx-a strong { font-family:'Montserrat',sans-serif; font-size:calc(17px * var(--tz)); line-height:1.25; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header-bar"></div>
+  <div class="secondary-bar"></div>
+
+  <div class="px-16 pt-6 pb-2">
+    <div class="flex items-center gap-3">
+      <div style="width:5px;height:44px;" class="bg-accent"></div>
+      <div>
+        <p class="font-montserrat font-bold text-gray-400 text-lg uppercase tracking-widest">Conexões · o que a fiscalização recebe e o que devolve</p>
+        <p class="text-5xl font-montserrat font-bold text-brand uppercase tracking-tight">Onde o PAF toca as outras agendas</p>
+      </div>
+      <div class="ml-auto flex items-center gap-3">
+        <span class="bloco-tag bt-b3"><i class="fas fa-link"></i> Bloco 3 · Conexões</span>
+        <img src="assets/logo-antaq-azul.png" alt="ANTAQ" style="height:32px;">
+        <p class="font-montserrat font-bold text-gray-400 tracking-wider" style="font-size:12px; line-height:1.35; white-space:nowrap;">SFC<br/>GRAT · GPF · GCOR</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex-1 px-16 pb-2 flex flex-col justify-center">
+    <table class="tbl cx">
+      <thead><tr><th style="width:27%;">Agenda</th><th style="width:36%;"><i class="fas fa-arrow-down"></i> A fiscalização recebe</th><th><i class="fas fa-arrow-up"></i> A fiscalização devolve</th></tr></thead>
+      <tbody>
+      
+      <tr>
+        <td><div class="cx-a"><i class="fas fa-scale-balanced"></i><div><strong>Agenda Regulatória e ciclo regulatório</strong><span class="quem">SRG</span></div></div></td>
+        <td>Normas novas a implantar (Res. 135 e 138/2026) e as <strong>99 contribuições</strong> da revisão da Agenda, base das temáticas de 2027</td>
+        <td>Evidência de campo para AIR e Avaliação de Resultado Regulatório; matérias sem método vão ao GT do <strong>tema 2.8</strong></td>
+      </tr>
+      
+      <tr>
+        <td><div class="cx-a"><i class="fas fa-book-open"></i><div><strong>Agenda Plurianual de Estudos</strong><span class="quem">SEPH</span></div></div></td>
+        <td>Diagnóstico setorial: <strong>24 dos 27 estudos</strong> alcançam as demandas da consulta</td>
+        <td>Dado de campo para estudos em curso (P1, P14, P21); pauta para os que ficaram sem demanda (P11, P16, P20)</td>
+      </tr>
+      
+      <tr>
+        <td><div class="cx-a"><i class="fas fa-leaf"></i><div><strong>Agenda Ambiental e de Segurança Aquaviária</strong><span class="quem">SESGI · GMS</span></div></div></td>
+        <td>Índice de Desempenho Ambiental e subsídios à fiscalização (RI, art. 54, V)</td>
+        <td>Verificação em campo de <strong>resíduos de embarcações</strong>; método conjunto para riscos climáticos</td>
+      </tr>
+      
+      <tr>
+        <td><div class="cx-a"><i class="fas fa-chart-column"></i><div><strong>Estatística e desempenho</strong><span class="quem">SESGI · GEA</span></div></div></td>
+        <td>Estatístico Aquaviário (alimenta o IPR) e Sistema de Desempenho Portuário</td>
+        <td>Conferência da qualidade do dado informado à Agência, que ainda depende de método amostral</td>
+      </tr>
+      
+      <tr>
+        <td><div class="cx-a"><i class="fas fa-sitemap"></i><div><strong>PEI, PGA, PGD e PDTIC</strong><span class="quem">SGE</span></div></div></td>
+        <td>Metas do PGA e as horas dos planos de trabalho do PGD: <strong>55.560 h</strong> disponíveis ao PAF 2027</td>
+        <td>EPAF e indicadores de efetividade; demandas de <strong>Nível 1</strong> ao PDTIC; o limite de lotação no Norte</td>
+      </tr>
+      
+      <tr>
+        <td><div class="cx-a"><i class="fas fa-file-signature"></i><div><strong>Outorgas</strong><span class="quem">SOG</span></div></div></td>
+        <td>Cadastro de outorgas: o universo de <strong>2.466</strong> avaliado pelo IPR</td>
+        <td>Dossiê dos <strong>49 CNPJs</strong> baixados ou suspensos; afretamento e apoio marítimo, o maior bloco da consulta (18 demandas)</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fonte px-16 pb-1">Fonte: NT nº 27/2026/GPF/SFC, itens 5 e 8.2; minuta da NT de Metodologia do PAF 2027, itens 3 e 6; NT do IPR 2.0 (Quadro de indicadores); Regimento Interno, art. 54.</p>
+
+
+  <div class="px-16 pb-4 flex justify-between items-center border-t border-gray-100 pt-3 mx-8">
+    <p class="text-gray-400 text-sm">Agendas em Sincronia · O Plano de Fiscalização e as Agendas da ANTAQ · SFC · 13/10/2026</p>
+    <p class="text-gray-300 text-sm font-mono">19 / 25</p>
+  </div>
+</div>
+<script src="zoom.js"></script>
+<script>document.addEventListener("keydown",function(e){if(["ArrowRight","ArrowLeft","PageDown","PageUp","Home","End"," ","f","F"].indexOf(e.key)!==-1){e.preventDefault();window.parent.postMessage({type:"slide-nav",key:e.key},"*");}});</script>
+</body>
+</html>

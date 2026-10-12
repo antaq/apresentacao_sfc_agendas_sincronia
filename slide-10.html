@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>O rito do PAF — quem faz o quê</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>:root { --tz-base: 1.377; }
+
+body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif; }
+.slide { width:100vw; height:100vh; position:relative; display:flex; flex-direction:column; overflow:hidden; background:#ffffff; }
+.font-montserrat { font-family:'Montserrat',sans-serif; }
+.text-brand { color:#003366; }
+.bg-brand { background-color:#003366; }
+.text-accent { color:#0066CC; }
+.bg-accent { background-color:#0066CC; }
+.header-bar { height:10px; background:#003366; width:100%; }
+.secondary-bar { height:4px; background:#0066CC; width:100%; }
+
+.stat-card {
+  background: linear-gradient(135deg, #003366, #004d99);
+  border-radius: 16px;
+  padding: 20px 18px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: '';
+  position: absolute; top: -30px; right: -30px;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: calc(48px * var(--tz));
+  line-height: 1;
+}
+.card {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 14px 20px;
+  background: #F8FAFC;
+  border-radius: 14px;
+  border-left: 5px solid #0066CC;
+}
+.card-green  { background: linear-gradient(135deg,#F0FDF4,#DCFCE7); border-left-color:#22C55E; }
+.card-amber  { background: linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#F59E0B; }
+.card-red    { background: linear-gradient(135deg,#FEF2F2,#FEE2E2); border-left-color:#EF4444; }
+.ico {
+  width:50px; height:50px; border-radius:12px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+}
+/* As colunas dos slides de duas metades centram o proprio conteudo: a folga
+   vertical fica dividida em cima e embaixo, em vez de sobrar toda no rodape.
+   O contêiner de conteudo quase sempre E o proprio grid (`class="flex-1 ...
+   grid"`), e nao um grid dentro dele — por isso os dois seletores. */
+.slide > .flex-1 > .flex.flex-col,
+.slide > .flex-1 > .grid > .flex.flex-col { justify-content:center; }
+
+table.tbl { width:100%; border-collapse:collapse; }
+table.tbl th {
+  background:#F1F5F9; color:#475569; text-align:left;
+  font-family:'Montserrat',sans-serif; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.06em;
+  padding:10px 14px; font-size:calc(15px * var(--tz));
+}
+table.tbl td { padding:11px 14px; border-top:1px solid #E2E8F0; color:#334155; font-size:calc(18px * var(--tz)); }
+table.tbl tr:nth-child(even) td { background:#FAFBFC; }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+table.tbl th.num { text-align:right; }
+.pill {
+  display:inline-block; padding:3px 12px; border-radius:999px;
+  font-family:'Montserrat',sans-serif; font-weight:700;
+  font-size:calc(14px * var(--tz)); letter-spacing:0.04em;
+}
+.pill-a { background:#DCFCE7; color:#166534; }
+.pill-b { background:#DBEAFE; color:#1E40AF; }
+.pill-c { background:#FEE2E2; color:#991B1B; }
+.pill-gold { background:#FEF3C7; color:#92400E; }
+.formula {
+  background:#0F172A; color:#E2E8F0; border-radius:14px;
+  padding:18px 24px; font-family:'Courier New',monospace;
+  font-size:calc(20px * var(--tz)); letter-spacing:0.02em;
+}
+.destaque {
+  background: linear-gradient(135deg,#003366,#0066CC);
+  color:#fff; border-radius:16px; padding:16px 24px;
+}
+.legenda { color:#64748B; font-size:calc(15px * var(--tz)); line-height:1.5; }
+.novo-tag {
+  display:inline-flex; align-items:center; gap:7px;
+  background:#FFD700; color:#003366; border-radius:999px;
+  padding:3px 14px; font-family:'Montserrat',sans-serif;
+  font-weight:900; font-size:calc(13px * var(--tz));
+  letter-spacing:0.1em; text-transform:uppercase;
+}
+
+/* Respiro vertical entre os cards.
+   Os utilitarios gap-* do Tailwind valem para as duas direcoes, e mexer no
+   `gap` cheio estreitaria as colunas dos grids de duas metades. Por isso aqui
+   so o `row-gap` e reescrito: um card fica mais longe do card de baixo, e a
+   largura das colunas continua exatamente a mesma. Esta folha vem depois do
+   CDN no <head>, entao vence no desempate por ordem. */
+.gap-2 { row-gap:18px; }
+.gap-3 { row-gap:30px; }
+.gap-4 { row-gap:32px; }
+.gap-5 { row-gap:34px; }
+.gap-6 { row-gap:34px; }
+.gap-8 { row-gap:38px; }
+
+.bloco-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  border-radius:999px; padding:4px 16px; font-family:'Montserrat',sans-serif; white-space:nowrap;
+  font-weight:900; font-size:calc(13px * var(--tz)); letter-spacing:0.08em; text-transform:uppercase;
+}
+.bt-risco { background:#FEE2E2; color:#991B1B; }
+.bt-tema  { background:#DBEAFE; color:#1E3A8A; }
+.bt-geral { background:#FEF3C7; color:#92400E; }
+.bt-oper  { background:#DCFCE7; color:#166534; }
+.fonte { color:#94A3B8; font-size:calc(13px * var(--tz)); line-height:1.4; }
+.titulo-sec { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(21px * var(--tz)); }
+.sub-sec { color:#64748B; font-size:calc(15px * var(--tz)); }
+.num-badge {
+  width:38px; height:38px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:#003366; color:#fff; font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size:calc(17px * var(--tz));
+}
+.card p { margin:0; }
+.card-t { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(19px * var(--tz)); }
+.card-d { color:#475569; font-size:calc(16px * var(--tz)); line-height:1.45; margin-top:3px !important; }
+
+/* Barras: trilho cinza, segmentos com 2px de folga entre si e rótulo direto. */
+.bar-row { display:grid; grid-template-columns: var(--rot, 300px) 1fr; align-items:center; gap:14px; }
+.bar-rot { color:#334155; font-size:calc(17px * var(--tz)); line-height:1.25; text-align:right; }
+.bar-rot strong { color:#003366; }
+.bar-trk { display:flex; gap:2px; height:42px; }
+.seg {
+  height:100%; display:flex; align-items:center; justify-content:center;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(17px * var(--tz));
+  color:#fff; min-width:0; overflow:hidden; white-space:nowrap;
+}
+.seg:first-child { border-radius:4px 0 0 4px; }
+.seg:last-child  { border-radius:0 4px 4px 0; }
+.seg:only-child  { border-radius:4px; }
+.leg-row { display:flex; flex-wrap:wrap; gap:22px; color:#475569; font-size:calc(16px * var(--tz)); }
+.leg-row span { display:inline-flex; align-items:center; gap:7px; }
+.leg-row i.sw { width:18px; height:18px; border-radius:3px; display:inline-block; }
+/* Título com tamanho fixo em todos os slides: não acompanha o fator de texto,
+   para que títulos longos não quebrem linha quando o corpo cresce. */
+.slide p.text-5xl { font-size:54px !important; line-height:1.1 !important; }
+
+.bt-b1 { background:#DBEAFE; color:#1E3A8A; }
+.bt-b2 { background:#FEE2E2; color:#991B1B; }
+.bt-b3 { background:#EDE9FE; color:#5B21B6; }
+.bt-b4 { background:#DCFCE7; color:#166534; }
+.quem {
+  display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:2px 11px;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(12.5px * var(--tz));
+  letter-spacing:0.04em; background:#EDE9FE; color:#5B21B6; white-space:nowrap;
+}
+
+.ritos { position:relative; }
+.ri { position:relative; background:#F8FAFC; border-radius:16px; border-top:7px solid var(--c); padding:14px 16px 12px; display:flex; flex-direction:column; gap:4px; }
+.ri p { margin:0; }
+.ri-n { position:absolute; top:10px; right:14px; font-family:'Montserrat',sans-serif; font-weight:900; color:#CBD5E1; font-size:calc(34px * var(--tz)); line-height:1; }
+.ri-q { font-family:'Montserrat',sans-serif; font-weight:900; color:var(--c); font-size:calc(19px * var(--tz)); line-height:1.2; padding-right:30px; }
+.ri-t { color:#334155; font-size:calc(16px * var(--tz)); line-height:1.4; }
+.ri-b { color:#94A3B8; font-size:calc(13px * var(--tz)); margin-top:auto !important; padding-top:4px; }
+.tipos { display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1; }
+.tipos div { display:flex; gap:14px; align-items:flex-start; background:#F8FAFC; border-radius:14px; padding:14px 18px; }
+.tipos i { font-size:calc(26px * var(--tz)); margin-top:4px; width:30px; text-align:center; }
+.tipos p { margin:0; color:#64748B; font-size:calc(15.5px * var(--tz)); line-height:1.4; }
+.tipos strong { color:#003366; font-family:'Montserrat',sans-serif; font-size:calc(18px * var(--tz)); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header-bar"></div>
+  <div class="secondary-bar"></div>
+
+  <div class="px-16 pt-6 pb-2">
+    <div class="flex items-center gap-3">
+      <div style="width:5px;height:44px;" class="bg-accent"></div>
+      <div>
+        <p class="font-montserrat font-bold text-gray-400 text-lg uppercase tracking-widest">Plano Anual de Fiscalização · Regimento Interno</p>
+        <p class="text-5xl font-montserrat font-bold text-brand uppercase tracking-tight">O rito do PAF: quem faz o quê</p>
+      </div>
+      <div class="ml-auto flex items-center gap-3">
+        <span class="bloco-tag bt-b2"><i class="fas fa-route"></i> Bloco 2 · Rito do PAF</span>
+        <img src="assets/logo-antaq-azul.png" alt="ANTAQ" style="height:32px;">
+        <p class="font-montserrat font-bold text-gray-400 tracking-wider" style="font-size:12px; line-height:1.35; white-space:nowrap;">SFC<br/>GRAT · GPF · GCOR</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex-1 px-16 pb-2 flex flex-col gap-5">
+    <div class="grid grid-cols-6 gap-4 ritos">
+      
+      <div class="ri" style="--c:#003366;">
+        <span class="ri-n">1</span>
+        <p class="ri-q">GPF</p>
+        <p class="ri-t">Propõe as diretrizes e o plano</p>
+        <p class="ri-b">RI, art. 80, III, &ldquo;a&rdquo;, e VI</p>
+      </div>
+      
+      <div class="ri" style="--c:#003366;">
+        <span class="ri-n">2</span>
+        <p class="ri-q">Gerências e Unidades Regionais</p>
+        <p class="ri-t">Apoiam a elaboração: consulta técnica</p>
+        <p class="ri-b">RI, art. 84, IX, &ldquo;a&rdquo;</p>
+      </div>
+      
+      <div class="ri" style="--c:#003366;">
+        <span class="ri-n">3</span>
+        <p class="ri-q">GCOR</p>
+        <p class="ri-t">Consolida e equaliza a carga entre unidades</p>
+        <p class="ri-b">RI, art. 78, II e V</p>
+      </div>
+      
+      <div class="ri" style="--c:#003366;">
+        <span class="ri-n">4</span>
+        <p class="ri-q">SFC</p>
+        <p class="ri-t">Consolida e submete à Diretoria</p>
+        <p class="ri-b">RI, art. 76, VIII</p>
+      </div>
+      
+      <div class="ri" style="--c:#92400E;">
+        <span class="ri-n">5</span>
+        <p class="ri-q">Diretoria Colegiada</p>
+        <p class="ri-t">Aprova o Plano de Fiscalização</p>
+        <p class="ri-b">RI, art. 11, X</p>
+      </div>
+      
+      <div class="ri" style="--c:#15803D;">
+        <span class="ri-n">6</span>
+        <p class="ri-q">Toda a SFC</p>
+        <p class="ri-t">Executa e mede: EPAF mensal, meta &ge; 90%</p>
+        <p class="ri-b">PAF 2025: 96% executado</p>
+      </div>
+    </div>
+
+    <div class="flex-1 grid grid-cols-12 gap-6">
+      <div class="col-span-6 flex flex-col gap-3">
+        <p class="titulo-sec">Quatro tipos de fiscalização no PAF</p>
+        <div class="tipos">
+          <div><i class="fas fa-gauge-high" style="color:#B91C1C;"></i><p><strong>Grupo de risco</strong><br/>o núcleo do plano: a nota de risco escolhe a outorga e a intensidade</p></div>
+          <div><i class="fas fa-layer-group" style="color:#0066CC;"></i><p><strong>Temáticas</strong><br/>um problema do setor, examinado em vários regulados ao mesmo tempo</p></div>
+          <div><i class="fas fa-screwdriver-wrench" style="color:#15803D;"></i><p><strong>Operacionais</strong><br/>dirigidas a um problema regulatório conhecido, e não a um agente</p></div>
+          <div><i class="fas fa-file-contract" style="color:#7C3AED;"></i><p><strong>Rito próprio</strong><br/>novas outorgas, embarcações em construção, investimentos, concessões</p></div>
+        </div>
+      </div>
+      <div class="col-span-6 flex flex-col gap-3">
+        <p class="titulo-sec">Onde as outras áreas já entram</p>
+        <div class="card">
+          <div class="ico" style="background:#DBEAFE;"><i class="fas fa-gavel text-accent text-2xl"></i></div>
+          <div><p class="card-t">Deliberação-DG nº 96/2025</p>
+          <p class="card-d">Discutir a proposta do PAF com as unidades finalísticas e as Diretorias antes de submetê-la.</p></div>
+        </div>
+        <div class="card">
+          <div class="ico" style="background:#DBEAFE;"><i class="fas fa-envelope-open-text text-accent text-2xl"></i></div>
+          <div><p class="card-t">Ofício Circular nº 2/2026/SFC</p>
+          <p class="card-d">Consulta à SRG, à SESGI, à SOG e à SEPH sobre temas a fiscalizar, encerrada em 17/08/2026.</p></div>
+        </div>
+        <div class="card card-green">
+          <div class="ico" style="background:#BBF7D0;"><i class="fas fa-clock text-green-700 text-2xl"></i></div>
+          <div><p class="card-t">PGD e planejamento</p>
+          <p class="card-d">A capacidade da fiscalização é medida nos planos de trabalho do PGD, e a GCOR acompanha as metas do PGA (RI, art. 78, VI e VII).</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="fonte px-16 pb-1">Regimento Interno da ANTAQ, arts. 11, 76, 78, 80 e 84. Tipos de fiscalização: Trilha Técnica da Fiscalização, Aula 8 — Planejamento e Inteligência (SFC/GPF, 2026), tela 19. EPAF de 2025: Projetos SFC 2026, apresentação à Diretoria Colegiada (ago/2026). Ofício e Deliberação: NT nº 27/2026/GPF/SFC, item 2.</p>
+
+
+  <div class="px-16 pb-4 flex justify-between items-center border-t border-gray-100 pt-3 mx-8">
+    <p class="text-gray-400 text-sm">Agendas em Sincronia · O Plano de Fiscalização e as Agendas da ANTAQ · SFC · 13/10/2026</p>
+    <p class="text-gray-300 text-sm font-mono">10 / 25</p>
+  </div>
+</div>
+<script src="zoom.js"></script>
+<script>document.addEventListener("keydown",function(e){if(["ArrowRight","ArrowLeft","PageDown","PageUp","Home","End"," ","f","F"].indexOf(e.key)!==-1){e.preventDefault();window.parent.postMessage({type:"slide-nav",key:e.key},"*");}});</script>
+</body>
+</html>

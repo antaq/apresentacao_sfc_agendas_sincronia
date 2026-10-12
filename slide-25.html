@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Encerramento — Agendas em Sincronia · SFC</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+:root { --tz-base: 1.3; }
+body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif; }
+.slide { width:100vw; height:100vh; position:relative; display:flex; flex-direction:column; overflow:hidden; background: linear-gradient(135deg, #001a33 0%, #003366 45%, #004d99 100%); }
+.font-montserrat { font-family:'Montserrat',sans-serif; }
+.gold { color: #FFD700; }
+.bg-gold { background-color: #FFD700; }
+.shape-circle { position:absolute; bottom:-140px; left:-140px; width:520px; height:520px; border-radius:50%; border:2px solid rgba(255,215,0,0.07); }
+.shape-circle2 { position:absolute; top:-120px; right:-120px; width:420px; height:420px; border-radius:50%; border:2px solid rgba(255,215,0,0.06); }
+.recado {
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:16px; padding:16px 22px;
+  display:flex; gap:16px; align-items:flex-start;
+}
+.recado i { color:#FFD700; font-size:calc(22px * var(--tz)); margin-top:3px; width:28px; text-align:center; }
+.recado p { margin:0; }
+.recado-t { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; font-size:calc(19px * var(--tz)); }
+.recado-d { color:#BFD3E8; font-size:calc(15px * var(--tz)); line-height:1.5; margin-top:3px !important; }
+.gap-4 { row-gap:28px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="shape-circle"></div>
+  <div class="shape-circle2"></div>
+  <div style="height:6px; background:#FFD700; width:100%;"></div>
+
+  <div class="relative z-10 flex-1 px-24 pt-12 pb-4 grid grid-cols-12 gap-10 items-center">
+    <div class="col-span-6">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="bg-gold" style="width:40px;height:3px;"></div>
+        <p class="text-gray-400 text-lg font-montserrat font-medium tracking-widest uppercase">Em síntese</p>
+      </div>
+      <p class="font-montserrat font-black text-white leading-none" style="font-size:calc(52px * var(--tz));">As agendas dizem</p>
+      <p class="font-montserrat font-black gold leading-none mt-1" style="font-size:calc(52px * var(--tz));">o que importa.</p>
+      <p class="font-montserrat font-black text-white leading-none mt-5" style="font-size:calc(52px * var(--tz));">A fiscalização mostra</p>
+      <p class="font-montserrat font-black gold leading-none mt-1" style="font-size:calc(52px * var(--tz));">o que acontece.</p>
+      <div class="bg-gold mt-8 mb-6" style="width:100px; height:4px;"></div>
+      <p class="text-xl text-gray-300 font-light leading-relaxed max-w-xl">
+        Em sincronia, uma alimenta a outra: o plano de fiscalização parte do que as
+        agendas decidiram e devolve a elas evidência de campo.
+      </p>
+    </div>
+
+    <div class="col-span-6 flex flex-col gap-4">
+      <div class="recado">
+        <i class="fas fa-compass-drafting"></i>
+        <div>
+          <p class="recado-t">A agenda da fiscalização</p>
+          <p class="recado-d">O PPF 2025-2028 combina <strong style="color:#FFD700;">risco, nível de verificação e especialização</strong>:
+          Fiscalização Responsiva, 3 Níveis e GEF.</p>
+        </div>
+      </div>
+      <div class="recado">
+        <i class="fas fa-route"></i>
+        <div>
+          <p class="recado-t">O rito do PAF</p>
+          <p class="recado-d">Proposto pela GPF, consolidado pela SFC e aprovado pela Diretoria Colegiada:
+          o PAF 2027 vai à Diretoria <strong style="color:#FFD700;">até 31/10/2026</strong>, medido contra a força de trabalho de cada unidade.</p>
+        </div>
+      </div>
+      <div class="recado">
+        <i class="fas fa-link"></i>
+        <div>
+          <p class="recado-t">A conexão já começou</p>
+          <p class="recado-d">As temáticas de 2027 nasceram das <strong style="color:#FFD700;">99 contribuições</strong> da Agenda Regulatória,
+          confrontadas com a Agenda de Estudos.</p>
+        </div>
+      </div>
+      <div class="recado" style="background:rgba(255,215,0,0.10); border-color:rgba(255,215,0,0.3);">
+        <i class="fas fa-handshake"></i>
+        <div>
+          <p class="recado-t">Próximo passo</p>
+          <p class="recado-d">Um ponto focal por agenda e um marco comum no calendário, para levar adiante as seis propostas de melhoria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative z-10 px-24 pb-10 flex justify-between items-end border-t border-gray-700 pt-6 mx-8">
+    <div>
+      <p class="font-montserrat font-bold text-white text-xl">Obrigado.</p>
+      <p class="text-gray-400 text-sm mt-1">SFC · Superintendência de Fiscalização e Coordenação das Unidades Regionais · GRAT · GPF · GCOR — ANTAQ</p>
+    </div>
+    <div class="text-right">
+      <p class="text-gray-400 text-sm">Agendas em Sincronia · Plenário da ANTAQ · 13 de outubro de 2026</p>
+      <p class="text-gray-500 text-sm font-montserrat font-bold tracking-wider mt-1">25 / 25</p>
+    </div>
+  </div>
+
+  <div class="absolute bottom-24 left-1/2 transform -translate-x-1/2 opacity-5" style="z-index:0;">
+    <img src="assets/logo-antaq-branca.png" alt="" style="height:220px;">
+  </div>
+</div>
+<script src="zoom.js"></script>
+<script>document.addEventListener("keydown",function(e){if(["ArrowRight","ArrowLeft","PageDown","PageUp","Home","End"," ","f","F"].indexOf(e.key)!==-1){e.preventDefault();window.parent.postMessage({type:"slide-nav",key:e.key},"*");}});</script>
+</body>
+</html>
