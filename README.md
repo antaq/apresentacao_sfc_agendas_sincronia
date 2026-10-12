@@ -24,3 +24,7 @@ agendas, os projetos em andamento e as melhorias a encaminhar em conjunto.
 - Cartão de compartilhamento: `assets/og-capa.jpg`, gerado a partir de `assets/og-fonte.html`.
 
 Para ver: `python3 -m http.server 8766` nesta pasta e abrir `http://localhost:8766/`.
+
+## Animação dos cards
+
+`anim.js` faz os cards entrarem em sequência, como cartas postas na mesa, quando o slide abre (no máximo ~3 s). Vale para todas as telas de conteúdo e para o encerramento; capa e divisórias ficam de fora. Respeita a preferência "reduzir movimento" do sistema.
