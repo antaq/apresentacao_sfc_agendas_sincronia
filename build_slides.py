@@ -690,9 +690,9 @@ slide(
       <div class="grid grid-cols-5 gap-3">
         <div class="marco feito"><b>29/09</b><span>Rodada de validação do IPR e equalização aprovada</span></div>
         <div class="marco feito"><b>30/09</b><span>Data de referência do ciclo 2027 (corte cadastral)</span></div>
-        <div class="marco feito"><b>02/10</b><span>Encerrada a consulta técnica às Unidades Regionais</span></div>
+        <div class="marco feito"><b>02/10</b><span>Encerrada a consulta às Unidades Regionais; extração oficial e sorteio do Grupo A</span></div>
         <div class="marco hoje"><b>13/10 · hoje</b><span>Agendas em Sincronia: a proposta apresentada às demais agendas</span></div>
-        <div class="marco"><b>Até 31/10</b><span>Extração oficial com o sorteio do Grupo A, escolha das 3 temáticas e submissão à Diretoria Colegiada</span></div>
+        <div class="marco"><b>Até 31/10</b><span>Submissão do PAF 2027 à Diretoria Colegiada</span></div>
       </div>
     </div>
   </div>
@@ -881,9 +881,9 @@ slide(
         a semente — um pulso futuro do <strong>NIST Randomness Beacon</strong>. Mesma lista + mesma semente = mesmas sorteadas.</p></div>
       </div>
       <div class="card card-amber">
-        <div class="ico" style="background:#FDE68A;"><i class="fas fa-hourglass-half text-yellow-700 text-2xl"></i></div>
-        <div><p class="card-t">O sorteio roda na extração oficial</p>
-        <p class="card-d">Junto com os demais dados do PAF: a Diretoria recebe o plano já com a lista nominal do Grupo A. Os &asymp;30 de hoje são o valor esperado.</p></div>
+        <div class="ico" style="background:#FDE68A;"><i class="fas fa-circle-check text-yellow-700 text-2xl"></i></div>
+        <div><p class="card-t">Sorteio feito na extração oficial de 02/10</p>
+        <p class="card-d">Junto com os demais dados do PAF, no encerramento da consulta às Unidades Regionais: a Diretoria recebe o plano já com a lista nominal do Grupo A.</p></div>
       </div>
     </div>
   </div>
