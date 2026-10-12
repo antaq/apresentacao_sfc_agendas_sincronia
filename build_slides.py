@@ -1294,7 +1294,7 @@ novo(
       <p class="titulo-sec">Onde estamos</p>
       <div class="pss">
         {_passo("2023", "Processo nº 50300.012639/2023-26 abre o mapeamento de níveis de fiscalização.", "feito")}
-        {_passo("Abr/2026", "Nota Técnica da GPF fixa a arquitetura: método ANTT/ANEEL adaptado, classificação dispositivo a dispositivo das Resoluções.", "feito")}
+        {_passo("Abr/26", "Nota Técnica da GPF fixa a arquitetura: método ANTT/ANEEL adaptado, classificação dispositivo a dispositivo das Resoluções.", "feito")}
         {_passo("2026", "Primeira aplicação: Res. ANTAQ nº 65/2021, produtos perigosos em instalações portuárias (a atividade de maior risco, IRA 81).", "agora")}
         {_passo("Próximo", "Lacunas de Nível 1 viram demanda do PDTIC; integração com Estatístico Aquaviário, SisPAT e Sistema de Desempenho Portuário.")}
       </div>
@@ -1319,7 +1319,7 @@ novo(
 .prog { display:flex; justify-content:space-between; color:#fff; border-radius:999px; padding:6px 18px;
         background:linear-gradient(90deg,#15803D,#0066CC,#B91C1C); font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(14px * var(--tz)); }
 .pss { display:flex; flex-direction:column; gap:10px; }
-.ps { display:grid; grid-template-columns:120px 1fr; gap:14px; align-items:baseline; border-left:5px solid #CBD5E1; padding:6px 0 6px 14px; }
+.ps { display:grid; grid-template-columns:150px 1fr; gap:14px; align-items:baseline; border-left:5px solid #CBD5E1; padding:6px 0 6px 14px; }
 .ps b { font-family:'Montserrat',sans-serif; font-weight:900; color:#003366; font-size:calc(18px * var(--tz)); }
 .ps span { color:#475569; font-size:calc(16px * var(--tz)); line-height:1.4; }
 .ps.feito { border-left-color:#0066CC; }
