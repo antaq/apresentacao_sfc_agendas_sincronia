@@ -1360,7 +1360,7 @@ novo(
       <div class="gef">
         <div class="gef-top" style="background:linear-gradient(135deg,#7C2D12,#C2410C);"><i class="fas fa-boxes-stacked"></i> GEF Contêineres</div>
         <div class="gef-b">
-          <p class="gef-d">Apura as reclamações de cobrança na cadeia de contêineres e conduz o rito de autocomposição da Portaria SFC nº 1/2026, pelo ProTEU.</p>
+          <p class="gef-d">Apura as reclamações de cobrança na cadeia de contêineres e conduz o rito de autocomposição da Portaria SFC nº 1/2026; o ProTEU, sistema do rito, está em prototipação.</p>
           <div class="grid grid-cols-3 gap-3">
             <div class="kpi"><b>386</b><span>processos em 2025, ~237 com acordo</span></div>
             <div class="kpi"><b>R$ 25 mi</b><span>em cobranças canceladas (2025)</span></div>
@@ -1583,8 +1583,8 @@ novo(
     <div class="grid grid-cols-3 gap-4">
       {_proj("fa-satellite-dish", "#0066CC", "Fiscalização Eletrônica (3 Níveis)", "Normas, sistema e implantação",
              "Monitoramento automatizado por cruzamento de dados da ANTAQ e de outros órgãos; implantação começa por 3 obrigações.", "SGE · PDTIC · SESGI")}
-      {_proj("fa-boxes-stacked", "#0066CC", "ProTEU", "Interface interna em operação",
-             "Denúncias e autocomposição na cadeia de contêineres; a interface externa aguarda a Diretoria.", "SGE · TI")}
+      {_proj("fa-boxes-stacked", "#0066CC", "ProTEU", "Em fase de prototipação",
+             "Sistema para as denúncias e a autocomposição na cadeia de contêineres.", "SGE · TI")}
       {_proj("fa-chalkboard-user", "#15803D", "Enafis e Dia de Fiscal", "Dia de Fiscal: 21 e 22/10",
              "80 participantes no Enafis (Paranaguá, 21 a 25/09); o Dia de Fiscal leva a visão da fiscalização a servidores de outras áreas.", "Todas as áreas · PDP")}
     </div>
@@ -1598,7 +1598,7 @@ novo(
 .pj { border:1px solid #E2E8F0; border-left:6px solid var(--c); border-radius:14px; padding:12px 18px; display:flex; flex-direction:column; gap:5px; }
 .pj p { margin:0; }
 .pj-top { display:flex; gap:12px; align-items:center; }
-.pj-top i { color:var(--c); font-size:calc(22px * var(--tz)); width:28px; text-align:center; }
+.pj-top i { color:var(--c); font-size:calc(22px * var(--tz)); width:calc(30px * var(--tz)); flex-shrink:0; text-align:center; }
 .pj-t { font-family:'Montserrat',sans-serif; font-weight:900; color:#003366; font-size:calc(19px * var(--tz)); line-height:1.2; }
 .pj-s { font-family:'Montserrat',sans-serif; font-weight:700; color:var(--c); font-size:calc(14.5px * var(--tz)); text-transform:uppercase; letter-spacing:0.05em; }
 .pj-d { color:#475569; font-size:calc(15.5px * var(--tz)); line-height:1.42; }
