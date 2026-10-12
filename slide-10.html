@@ -179,6 +179,38 @@ table.tbl th.num { text-align:right; }
 .tipos i { font-size:calc(26px * var(--tz)); margin-top:4px; width:30px; text-align:center; }
 .tipos p { margin:0; color:#64748B; font-size:calc(15.5px * var(--tz)); line-height:1.4; }
 .tipos strong { color:#003366; font-family:'Montserrat',sans-serif; font-size:calc(18px * var(--tz)); }
+
+/* Entrada dos cards, como cartas postas na mesa: primeiro os 6 do rito,
+   depois os quatro tipos, por fim as outras areas. */
+@keyframes carta {
+  0%   { opacity:0; transform:translateY(-34px) rotate(var(--rot,-2deg)) scale(1.05); box-shadow:0 22px 30px rgba(15,23,42,0.18); }
+  60%  { opacity:1; }
+  100% { opacity:1; transform:none; box-shadow:0 0 0 rgba(15,23,42,0); }
+}
+@keyframes surge { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.ritos .ri, .tipos > div, .slide .col-span-6:last-child > .card {
+  animation:carta 0.62s cubic-bezier(0.22,0.9,0.3,1) both;
+  animation-delay:calc(var(--d, 0) * 1s);
+}
+.ritos .ri:nth-child(1) { --d:0.25; --rot:-2.5deg; }
+.ritos .ri:nth-child(2) { --d:0.40; --rot:2deg; }
+.ritos .ri:nth-child(3) { --d:0.55; --rot:-1.5deg; }
+.ritos .ri:nth-child(4) { --d:0.70; --rot:2.5deg; }
+.ritos .ri:nth-child(5) { --d:0.85; --rot:-2deg; }
+.ritos .ri:nth-child(6) { --d:1.00; --rot:1.5deg; }
+.tipos > div:nth-child(1) { --d:1.75; --rot:-2deg; }
+.tipos > div:nth-child(2) { --d:1.90; --rot:2deg; }
+.tipos > div:nth-child(3) { --d:2.05; --rot:-1.5deg; }
+.tipos > div:nth-child(4) { --d:2.20; --rot:2deg; }
+.slide .col-span-6:last-child > .card:nth-of-type(1) { --d:2.85; --rot:-1.5deg; }
+.slide .col-span-6:last-child > .card:nth-of-type(2) { --d:3.00; --rot:1.5deg; }
+.slide .col-span-6:last-child > .card:nth-of-type(3) { --d:3.15; --rot:-1deg; }
+.slide .col-span-6 > .titulo-sec { animation:surge 0.5s ease-out both; }
+.slide .col-span-6:first-child > .titulo-sec { animation-delay:1.55s; }
+.slide .col-span-6:last-child > .titulo-sec { animation-delay:2.65s; }
+@media (prefers-reduced-motion:reduce) {
+  .ritos .ri, .tipos > div, .slide .col-span-6 > .card, .slide .col-span-6 > .titulo-sec { animation:none; }
+}
 </style>
 </head>
 <body>
