@@ -9,7 +9,13 @@
     '60%{opacity:1}100%{opacity:1;transform:none;box-shadow:0 0 0 rgba(15,23,42,0)}}' +
     '@keyframes surge{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}' +
     '.anim-carta{animation:carta .62s cubic-bezier(.22,.9,.3,1) both;animation-delay:calc(var(--d,0) * 1s)}' +
-    '.anim-surge{animation:surge .5s ease-out both;animation-delay:calc(var(--d,0) * 1s)}';
+    '.anim-surge{animation:surge .5s ease-out both;animation-delay:calc(var(--d,0) * 1s)}' +
+    // barras horizontais crescem da esquerda para a direita
+    '@keyframes barra-cresce{from{width:0}}' +
+    '@keyframes barra-revela{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}' +
+    '.oc-bar{animation:barra-cresce 1s cubic-bezier(.22,.8,.3,1) both;animation-delay:calc(var(--bd,.9) * 1s)}' +
+    '.oc-bar + .oc-bar{animation-delay:calc(var(--bd,.9) * 1s + .2s)}' +
+    '.bar-trk .seg{animation:barra-revela 1s cubic-bezier(.22,.8,.3,1) both;animation-delay:calc(var(--bd,.9) * 1s)}';
   document.head.appendChild(st);
 
   var CARTAS = '.rt,.inst,.niv-r,.pr,.enf,.nv,.card,.stat-card,.destaque,.area,.gef,.ri,.comp,.formula,' +
@@ -51,4 +57,11 @@
     var f = maximo / t;
     todos.forEach(function (e) { e.style.setProperty('--d', (parseFloat(e.style.getPropertyValue('--d')) * f).toFixed(2)); });
   }
+
+  // As barras começam logo depois do card que as contém (ou 0,9 s após abrir), uma linha após a outra.
+  Array.prototype.forEach.call(slide.querySelectorAll('.oc-row,.bar-row'), function (row, i) {
+    var card = row.closest('.anim-carta');
+    var base = card ? parseFloat(card.style.getPropertyValue('--d')) + 0.5 : 0.9;
+    row.style.setProperty('--bd', (base + i * 0.15).toFixed(2));
+  });
 })();
