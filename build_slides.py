@@ -1051,8 +1051,8 @@ novo(
     "O que vamos conversar",
     f"""
   <div class="flex-1 px-16 pb-2 flex flex-col gap-4">
-    <p class="rt-lead">A organização pediu quatro coisas: <strong>o rito do PAF</strong>, <strong>a conexão com as outras agendas</strong>,
-    <strong>os projetos em andamento</strong> e <strong>as melhorias que podemos encaminhar juntos</strong>. O roteiro segue essa ordem.</p>
+    <p class="rt-lead">Quatro blocos: a <strong>agenda da fiscalização</strong>, o <strong>rito do PAF</strong>, a <strong>conexão com as outras agendas</strong>
+    e os <strong>projetos e melhorias</strong> que podemos encaminhar juntos.</p>
     <div class="flex-1 grid grid-cols-4 gap-5">
       {_bloco("01", "A agenda da fiscalização", "Como a SFC decide o que fiscalizar?",
               ["Premissas do PPF 2025-2028", "Fiscalização Responsiva", "Fiscalização em 3 Níveis", "Grupos Especializados (GEF)"],
