@@ -13,7 +13,7 @@
   document.head.appendChild(st);
 
   var CARTAS = '.rt,.inst,.niv-r,.pr,.enf,.nv,.card,.stat-card,.destaque,.area,.gef,.ri,.comp,.formula,' +
-               '.frente,.crono,.prop,.descob,.consulta,.op-etapa,.op-perg,.pj,.sis,.ml,.recado,.tipos > div';
+               '.frente,.crono,.prop,.descob,.consulta,.op-etapa,.op-perg,.pj,.sis,.ml,.recado,.tipos > div,.ben > span';
   var SURGE = '.titulo-sec,.cx tbody tr';
   var slide = document.querySelector('.slide');
   if (!slide) return;
