@@ -1606,7 +1606,7 @@ novo(
              "80 participantes no Enafis (Paranaguá, 21 a 25/09); o Dia de Fiscal leva a visão da fiscalização a servidores de outras áreas.", "Todas as áreas · PDP")}
     </div>
   </div>
-  <p class="fonte px-16 pb-1">Fonte: {PROJ}, telas 6 a 8 (status de ago/2026, com as datas definidas depois). SisPAT, SAI e SFIS Novo na tela seguinte.</p>
+  <p class="fonte px-16 pb-1">Fonte: {PROJ}, telas 6 a 8 (status de ago/2026, com as datas definidas depois). SisPAT e SAI na tela seguinte.</p>
 """,
     extra_css="""
 .pjg-r { display:flex; align-items:center; gap:12px; }
@@ -1630,7 +1630,7 @@ novo(
 # ---------------------------------------------------------------------------
 novo(
     23,
-    "SisPAT, SAI e SFIS Novo",
+    "SisPAT e SAI",
     "Sistemas da fiscalização · dado estruturado",
     "SisPAT e SAI",
     f"""
@@ -1672,8 +1672,7 @@ novo(
   <div class="px-16 pb-2">
     <div class="destaque flex items-center gap-6">
       <i class="fas fa-database text-3xl" style="color:#FFD700;"></i>
-      <p class="text-lg" style="margin:0;">O dado nasce na fiscalização e passa a <strong style="color:#FFD700;">servir às outras agendas</strong>. Na mesma linha,
-      o <strong>SFIS Novo</strong> leva o controle fiscal para o Oracle APEX, com migração da base atual.</p>
+      <p class="text-lg" style="margin:0;">O dado nasce na fiscalização e passa a <strong style="color:#FFD700;">servir às outras agendas</strong>.</p>
     </div>
   </div>
   <p class="fonte px-16 pb-1">Fonte: {PROJ}, telas 7, 9 e 10. SisPAT: posição em 19/08/2026. SAI: carteira do GEF Investimentos, valores em base ago/2025.</p>
