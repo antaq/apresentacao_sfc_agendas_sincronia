@@ -147,11 +147,11 @@ HEAD = """<!DOCTYPE html>
   <div class="header-bar"></div>
   <div class="secondary-bar"></div>
 
-  <div class="px-16 pt-6 pb-2">
-    <div class="flex items-center gap-3">
-      <div style="width:5px;height:44px;" class="bg-accent"></div>
+  <div class="px-16 pt-7 pb-6">
+    <div class="flex items-center gap-4">
+      <div style="width:5px; align-self:stretch;" class="bg-accent"></div>
       <div>
-        <p class="font-montserrat font-bold text-gray-400 text-lg uppercase tracking-widest">{kicker}</p>
+        <p class="font-montserrat font-bold text-gray-400 text-lg uppercase tracking-widest" style="margin-bottom:10px;">{kicker}</p>
         <p class="text-5xl font-montserrat font-bold text-brand uppercase tracking-tight">{titulo}</p>
       </div>
       <div class="ml-auto flex items-center gap-3">
@@ -1050,7 +1050,7 @@ novo(
     "Agendas em Sincronia · 13 de outubro de 2026",
     "O que vamos conversar",
     f"""
-  <div class="flex-1 px-16 pb-2 flex flex-col gap-4">
+  <div class="flex-1 px-16 pb-2 flex flex-col gap-7">
     <p class="rt-lead">Quatro blocos: a <strong>agenda da fiscalização</strong>, o <strong>rito do PAF</strong>, a <strong>conexão com as outras agendas</strong>
     e os <strong>projetos e melhorias</strong> que podemos encaminhar juntos.</p>
     <div class="flex-1 grid grid-cols-4 gap-5">
